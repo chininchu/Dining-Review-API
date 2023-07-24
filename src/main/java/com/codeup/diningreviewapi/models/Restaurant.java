@@ -1,10 +1,18 @@
 package com.codeup.diningreviewapi.models;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
+
+import java.util.List;
+
+
+@Entity
+@Table(name = "restaurants")
+@Data
+
 
 public class Restaurant {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +28,7 @@ public class Restaurant {
     // Overall score for the restaurant
     private Double overallScore;
 
-
-
-
+    // Create Relationships
 
 
 }
