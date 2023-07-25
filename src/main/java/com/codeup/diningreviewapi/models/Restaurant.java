@@ -1,14 +1,19 @@
 package com.codeup.diningreviewapi.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 
 @Entity
-@Table(name = "restaurants")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+
+@Table(name = "restaurants")
 
 
 public class Restaurant {
@@ -29,6 +34,9 @@ public class Restaurant {
     private Double overallScore;
 
     // Create Relationships
+
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    private List<Review> reviews;
 
 
 }
