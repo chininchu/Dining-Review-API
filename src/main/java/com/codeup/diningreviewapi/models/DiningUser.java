@@ -1,3 +1,5 @@
+package com.codeup.diningreviewapi.models;
+
 import com.codeup.diningreviewapi.models.Review;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,8 +12,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
-public class User {
+@Table(name = "dining_users")
+public class DiningUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +32,7 @@ public class User {
     private boolean interestedInEggAllergies;
     private boolean interestedInDairyAllergies;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "diningUser", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
 
