@@ -1,6 +1,7 @@
 package com.codeup.diningreviewapi.models;
 
 
+import com.codeup.diningreviewapi.enums.ReviewStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,6 +30,8 @@ public class DiningReview {
     @Lob
 
     private String commentary;
+
+    private ReviewStatus status;
 
 
     // Entity Relationships
