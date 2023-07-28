@@ -36,7 +36,7 @@ public class Restaurant {
     // Create Relationships
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
-    private List<Review> reviews;
+    private List<DiningReview> diningReviews;
 
 
 }

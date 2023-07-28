@@ -5,15 +5,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.userdetails.User;
 
 @Entity
-@Table(name = "reviews")
+@Table(name = "dining_reviews")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Review {
+public class DiningReview {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

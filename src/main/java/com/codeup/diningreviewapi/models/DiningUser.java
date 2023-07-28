@@ -1,6 +1,5 @@
 package com.codeup.diningreviewapi.models;
 
-import com.codeup.diningreviewapi.models.Review;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,7 +32,7 @@ public class DiningUser {
     private boolean interestedInDairyAllergies;
 
     @OneToMany(mappedBy = "diningUser", cascade = CascadeType.ALL)
-    private List<Review> reviews;
+    private List<DiningReview> diningReviews;
 
 
 }
