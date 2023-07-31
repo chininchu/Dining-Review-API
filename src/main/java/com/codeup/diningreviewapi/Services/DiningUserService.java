@@ -36,6 +36,27 @@ public class DiningUserService {
 
     }
 
+    public DiningUser fetchUserByDisplayName(String displayName) {
+
+        // Implement logic to fetch user profile by display name
+        // (Scenario: As an application experience, I want to fetch the user profile belonging to a given display name)
+
+        return diningUserRepository.findByDisplayName(displayName);
+
+
+    }
+
+    public boolean doesUserExistByDisplayName(String displayName) {
+
+        // Implement logic to check if a user exists based on the given display name
+        // (Scenario: As part of the backend process that validates a user-submitted dining review,
+        // I want to verify that the user exists, based on the user display name associated with the dining review)
+
+        return diningUserRepository.existsByDisplayName(displayName);
+
+
+    }
+
 
 }
 
