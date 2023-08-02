@@ -41,6 +41,8 @@ public class DiningUserController {
 
         DiningUser updateUser = diningUserService.updateUser(diningUser);
 
+        
+
         return new ResponseEntity<>(updateUser, HttpStatus.OK);
 
 
