@@ -1,0 +1,22 @@
+package com.codeup.diningreviewapi.repositories;
+
+import com.codeup.diningreviewapi.enums.ReviewStatus;
+import com.codeup.diningreviewapi.models.DiningReview;
+import com.codeup.diningreviewapi.models.Restaurant;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
+
+public interface DiningReviewRepository extends JpaRepository<DiningReview, Long> {
+
+    List<DiningReview> findByStatus(ReviewStatus status);
+
+    List<DiningReview> findByRestaurantAndStatus(Restaurant restaurant, ReviewStatus status);
+
+    @Query("SELECT dr FROM DiningReview dr WHERE dr.diningUser.displayName = :displayName")
+    List<DiningReview> findDiningReviewByDiningUserDisplayName(@Param("displayName") String displayName);
+
+
+}
