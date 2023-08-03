@@ -42,5 +42,31 @@ public class DiningReviewService {
 
     }
 
+    public void approveOrRejectDiningReview(Long reviewId, boolean isApproved) {
+
+        // Implement logic to approve or reject a given dining review
+        // (Scenario: As an admin, I want to approve or reject a given dining review)
+
+        DiningReview diningReview = diningReviewRepository.findById(reviewId).orElse(null);
+
+        if (diningReview != null) {
+
+            if (isApproved) {
+
+                diningReview.setStatus(ReviewStatus.ACCEPTED);
+
+            } else {
+
+                diningReview.setStatus(ReviewStatus.REJECTED);
+            }
+
+            diningReviewRepository.save(diningReview);
+
+
+        }
+
+
+    }
+
 
 }
