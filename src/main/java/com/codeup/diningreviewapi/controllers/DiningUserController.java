@@ -3,6 +3,7 @@ package com.codeup.diningreviewapi.controllers;
 
 import com.codeup.diningreviewapi.Services.DiningUserService;
 import com.codeup.diningreviewapi.models.DiningUser;
+import com.codeup.diningreviewapi.models.Restaurant;
 import com.codeup.diningreviewapi.repositories.DiningUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,10 +16,12 @@ public class DiningUserController {
 
     private final DiningUserService diningUserService;
 
+
     @Autowired
     public DiningUserController(DiningUserService diningUserService) {
 
         this.diningUserService = diningUserService;
+
 
 
     }
@@ -29,6 +32,8 @@ public class DiningUserController {
         DiningUser createdUser = diningUserService.createUser(diningUser);
 
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+
+
 
 
     }
