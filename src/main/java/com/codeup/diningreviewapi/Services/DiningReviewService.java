@@ -2,6 +2,7 @@ package com.codeup.diningreviewapi.Services;
 
 import com.codeup.diningreviewapi.enums.ReviewStatus;
 import com.codeup.diningreviewapi.models.DiningReview;
+import com.codeup.diningreviewapi.models.Restaurant;
 import com.codeup.diningreviewapi.repositories.DiningReviewRepository;
 import com.codeup.diningreviewapi.repositories.DiningUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,16 @@ public class DiningReviewService {
 
 
         }
+
+
+    }
+
+
+    public List<DiningReview> getApprovedDiningReviewsForRestaurant(Restaurant restaurant) {
+
+        // Implement logic to fetch all approved dining reviews for a given restaurant
+        // (Scenario: To update a restaurant’s set of scores, fetch the set of all approved dining reviews belonging to this restaurant)
+        return diningReviewRepository.findByRestaurantAndStatus(restaurant, ReviewStatus.ACCEPTED);
 
 
     }
