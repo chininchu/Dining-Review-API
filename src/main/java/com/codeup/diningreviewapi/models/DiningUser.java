@@ -25,7 +25,9 @@ public class DiningUser {
 
     private String city;
     private String state;
+
     private String zipcode;
+
 
     private boolean interestedInPeanutAllergies;
     private boolean interestedInEggAllergies;
