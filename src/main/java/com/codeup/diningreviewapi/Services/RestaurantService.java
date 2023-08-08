@@ -20,5 +20,19 @@ public class RestaurantService {
 
     }
 
+    public Restaurant createRestaurant(Restaurant restaurant) {
+
+        // Check if a restaurant with the same name and zip code already exists
+
+        if (restaurantRepository.existsByNameAndDiningReviews_DiningUser_Zipcode(restaurant.getName(), restaurant.getZipCode())) {
+
+            throw new IllegalArgumentException("A restaurant with the same name and zip code already exists.");
+        }
+
+        return restaurantRepository.save(restaurant);
+
+
+    }
+
 
 }
