@@ -8,6 +8,8 @@ import com.codeup.diningreviewapi.repositories.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RestaurantService {
 
@@ -37,10 +39,15 @@ public class RestaurantService {
 
     }
 
-    public Restaurant getRestaurantById(Long id){
+    public Restaurant getRestaurantById(Long id) {
 
         return restaurantRepository.findById(id).orElse(null);
 
+
+    }
+
+    public List<Restaurant> getRestaurantsByZipCodeAndAllergyScores(String zipCode) {
+        return restaurantRepository.findRestaurantsByZipCodeWithAllergyScores(zipCode);
 
 
     }
