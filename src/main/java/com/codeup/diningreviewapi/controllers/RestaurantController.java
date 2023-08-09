@@ -1,6 +1,7 @@
 package com.codeup.diningreviewapi.controllers;
 
 import com.codeup.diningreviewapi.Services.RestaurantService;
+import com.codeup.diningreviewapi.models.DiningUser;
 import com.codeup.diningreviewapi.models.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,21 +24,12 @@ public class RestaurantController {
 
     }
 
-    @PostMapping
-    public ResponseEntity<?> createRestaurant(@RequestBody Restaurant restaurant) {
+    @PostMapping("/create")
+    public ResponseEntity<?> createRestaurant(@RequestBody Restaurant restaurant, @RequestBody DiningUser diningUser) {
 
-        try {
+        Restaurant createdRestaurant = restaurantService.createRestaurant(restaurant, diningUser);
 
-            Restaurant createdREstaurant = restaurantService.createRestaurant(restaurant);
-
-            return new ResponseEntity<>(createdREstaurant, HttpStatus.CREATED);
-
-        } catch (IllegalArgumentException e) {
-
-            return ResponseEntity.badRequest().body(e.getMessage());
-
-
-        }
+        return ResponseEntity.ok(createdRestaurant);
 
 
     }
