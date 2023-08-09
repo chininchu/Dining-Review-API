@@ -5,10 +5,7 @@ import com.codeup.diningreviewapi.models.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/restaurants")
@@ -46,7 +43,23 @@ public class RestaurantController {
     }
 
 
+    @GetMapping("/{id}")
 
+    public ResponseEntity<Restaurant> getRestaurantById(@PathVariable Long id) {
+
+        Restaurant restaurant = restaurantService.getRestaurantById(id);
+
+        if (restaurant != null) {
+            return ResponseEntity.ok(restaurant);
+
+
+        } else {
+
+            return ResponseEntity.notFound().build();
+        }
+
+
+    }
 
 
 }
