@@ -23,7 +23,7 @@ public class DiningReviewController {
 
     }
 
-    @PostMapping
+    @PostMapping("submit")
     public DiningReview submitDiningReview(@RequestBody DiningReview diningReview) {
 
         return diningReviewService.submitDiningReview(diningReview);
@@ -45,20 +45,6 @@ public class DiningReviewController {
 
 
     }
-
-    // Unable to create this method at the moment since the restaurantService class does not exist.
-
-//    @GetMapping("/restaurant/{restaurantId}/approved")
-//    public List<DiningReview> getApprovedDiningReviewsForRestaurant(@PathVariable Long restaurantId){
-//
-//        // Fetch the Restaurant entity based on the restaurantId and pass it to the service method
-//
-//
-//
-//
-//
-//
-//    }
 
 
 }
