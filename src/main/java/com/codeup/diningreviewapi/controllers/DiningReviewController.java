@@ -23,21 +23,22 @@ public class DiningReviewController {
 
     }
 
-    @PostMapping("submit")
+    @PostMapping("/submit")
     public DiningReview submitDiningReview(@RequestBody DiningReview diningReview) {
+
 
         return diningReviewService.submitDiningReview(diningReview);
 
 
     }
 
-    @GetMapping("/pending")
+    @GetMapping("/admin/pending")
     public List<DiningReview> getPendingReviews() {
 
         return diningReviewService.getPendingDiningReviews();
     }
 
-    @PutMapping("/{reviewId}")
+    @PutMapping("/admin/{reviewId}")
 
     public void approveOrRejectDiningReview(@PathVariable Long reviewId, @RequestParam boolean isApproved) {
 

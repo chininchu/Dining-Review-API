@@ -25,19 +25,22 @@ public class RestaurantService {
 
     }
 
-    public Restaurant createRestaurant(Restaurant restaurant, DiningUser diningUser) {
+    public Restaurant createRestaurant(Restaurant restaurant) {
 
         // Check if a restaurant with the same name and zip code already exists
 
-        if (restaurantRepository.existsByNameAndDiningReviews_DiningUser_Zipcode(restaurant.getName(), diningUser.getZipcode())) {
+        if (restaurantRepository.existsByNameAndZipCode(restaurant.getName(), restaurant.getZipCode())) {
 
             throw new IllegalArgumentException("A restaurant with the same name and zip code already exists.");
+
+
         }
 
         return restaurantRepository.save(restaurant);
 
 
     }
+
 
     public Restaurant getRestaurantById(Long id) {
 
@@ -46,8 +49,9 @@ public class RestaurantService {
 
     }
 
-    public List<Restaurant> getRestaurantsByZipCodeAndAllergyScores(String zipCode) {
-        return restaurantRepository.findRestaurantsByZipCodeWithAllergyScores(zipCode);
+    public List<Restaurant> getRestaurantsByZipCodeAndAllergyScores(String zipCode, String allergy) {
+
+        return restaurantRepository.findRestaurantsByZipCodeWithAllergyScores(zipCode, allergy);
 
 
     }

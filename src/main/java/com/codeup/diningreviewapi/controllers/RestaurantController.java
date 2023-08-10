@@ -28,9 +28,9 @@ public class RestaurantController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createRestaurant(@RequestBody Restaurant restaurant, @RequestBody DiningUser diningUser) {
+    public ResponseEntity<?> createRestaurant(@RequestBody Restaurant restaurant) {
 
-        Restaurant createdRestaurant = restaurantService.createRestaurant(restaurant, diningUser);
+        Restaurant createdRestaurant = restaurantService.createRestaurant(restaurant);
 
         return ResponseEntity.ok(createdRestaurant);
 
@@ -58,9 +58,9 @@ public class RestaurantController {
 
     @GetMapping("/search")
 
-    public ResponseEntity<List<Restaurant>> searchRestaurantsByZipCodeAndAllergyScores(@RequestParam String zipCode) {
+    public ResponseEntity<List<Restaurant>> searchRestaurantsByZipCodeAndAllergyScores(@RequestParam String zipCode, @RequestParam String allergy) {
 
-        List<Restaurant> restaurants = restaurantService.getRestaurantsByZipCodeAndAllergyScores(zipCode);
+        List<Restaurant> restaurants = restaurantService.getRestaurantsByZipCodeAndAllergyScores(zipCode, allergy);
 
         if (!restaurants.isEmpty()) {
 

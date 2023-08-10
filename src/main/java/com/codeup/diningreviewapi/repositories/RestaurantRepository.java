@@ -12,20 +12,18 @@ import java.util.List;
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
 
-    // Query to fetch restaurants by zip code and sorted by overall score
+    boolean existsByNameAndZipCode(String name, String zipCode);
 
-    @Query("SELECT r FROM Restaurant  r " +
-            "INNER JOIN r.diningReviews dr " +
-            "INNER JOIN dr.diningUser du " +
-            "WHERE du.zipcode = :zipCode " +
-            "AND (dr.peanutScore IS NOT NULL OR dr.eggScore iS NOT NULL OR dr.dairyScore IS NOT NULL) " +
+    @Query("SELECT r FROM Restaurant r " +
+            "JOIN r.diningReviews dr " +
+            "WHERE r.zipCode = :zipCode " +
+            "AND (CASE WHEN :allergy = 'peanut' THEN dr.peanutScore IS NOT NULL " +
+            "WHEN :allergy = 'egg' THEN dr.eggScore IS NOT NULL " +
+            "WHEN :allergy = 'dairy' THEN dr.dairyScore IS NOT NULL " +
+            "ELSE FALSE END) " +
             "GROUP BY r.id " +
-            "ORDER BY r.overallScore DESC ")
-    List<Restaurant> findRestaurantsByZipCodeWithAllergyScores(String zipCode);
-
-    // Query to check if a restaurant with the same name and zip code already exists
-
-    boolean existsByNameAndDiningReviews_DiningUser_Zipcode(String name, String zipCode);
+            "ORDER BY r.overallScore DESC")
+    List<Restaurant> findRestaurantsByZipCodeWithAllergyScores(@Param("zipCode") String zipCode, @Param("allergy") String allergy);
 
 
 }
