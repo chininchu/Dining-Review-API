@@ -17,8 +17,6 @@ public interface DiningReviewRepository extends JpaRepository<DiningReview, Long
 
     List<DiningReview> findByRestaurantAndStatus(Restaurant restaurant, ReviewStatus status);
 
-    @Query("SELECT dr FROM DiningReview dr WHERE dr.diningUser.displayName = :displayName")
-    List<DiningReview> findDiningReviewByDiningUserDisplayName(@Param("displayName") String displayName);
 
 
 }

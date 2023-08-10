@@ -15,8 +15,5 @@ public interface DiningUserRepository extends JpaRepository<DiningUser, Long> {
 
     boolean existsByDisplayName(String displayName);
 
-    @Query("SELECT u FROM DiningUser u WHERE u.city = :city AND u.state = :state")
-    List<DiningUser> findDiningUserByCityAndState(@Param("city") String city, @Param("state") String state);
-
 
 }

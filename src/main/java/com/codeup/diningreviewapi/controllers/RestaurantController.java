@@ -1,11 +1,15 @@
 package com.codeup.diningreviewapi.controllers;
 
 import com.codeup.diningreviewapi.Services.RestaurantService;
+import com.codeup.diningreviewapi.models.DiningUser;
 import com.codeup.diningreviewapi.models.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/restaurants")
@@ -23,21 +27,12 @@ public class RestaurantController {
 
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<?> createRestaurant(@RequestBody Restaurant restaurant) {
 
-        try {
+        Restaurant createdRestaurant = restaurantService.createRestaurant(restaurant);
 
-            Restaurant createdREstaurant = restaurantService.createRestaurant(restaurant);
-
-            return new ResponseEntity<>(createdREstaurant, HttpStatus.CREATED);
-
-        } catch (IllegalArgumentException e) {
-
-            return ResponseEntity.badRequest().body(e.getMessage());
-
-
-        }
+        return ResponseEntity.ok(createdRestaurant);
 
 
     }
@@ -56,6 +51,25 @@ public class RestaurantController {
         } else {
 
             return ResponseEntity.notFound().build();
+        }
+
+
+    }
+
+    @GetMapping("/search")
+
+    public ResponseEntity<List<Restaurant>> searchRestaurantsByZipCodeAndAllergyScores(@RequestParam String zipCode, @RequestParam String allergy) {
+
+        List<Restaurant> restaurants = restaurantService.getRestaurantsByZipCodeAndAllergyScores(zipCode, allergy);
+
+        if (!restaurants.isEmpty()) {
+
+            return ResponseEntity.ok(restaurants);
+
+
+        } else {
+
+            return ResponseEntity.noContent().build();
         }
 
 

@@ -25,6 +25,9 @@ public class Restaurant {
 
     private String name;
 
+    @Column(name = "zip_code")
+    private String zipCode;
+
     // Scores for individual categories
     private Double peanutScore;
     private Double eggScore;
