@@ -8,6 +8,7 @@ import com.codeup.diningreviewapi.repositories.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -51,7 +52,21 @@ public class RestaurantService {
 
     public List<Restaurant> getRestaurantsByZipCodeAndAllergyScores(String zipCode, String allergy) {
 
-        return restaurantRepository.findRestaurantsByZipCodeWithAllergyScores(zipCode, allergy);
+        switch (allergy.toLowerCase()) {
+
+            case "peanut":
+                return restaurantRepository.findRestaurantsByZipCodeWithPeanutScores(zipCode);
+
+            case "egg":
+                return restaurantRepository.findRestaurantsByZipCodeWithEggScores(zipCode);
+
+            case "dairy":
+                return restaurantRepository.findRestaurantsByZipCodeWithDairyScores(zipCode);
+
+            default:
+                return Collections.emptyList();
+
+        }
 
 
     }
