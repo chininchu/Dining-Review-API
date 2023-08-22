@@ -23,17 +23,14 @@ public class DiningUserController {
         this.diningUserService = diningUserService;
 
 
-
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<DiningUser> createUser(@RequestBody DiningUser diningUser) {
 
         DiningUser createdUser = diningUserService.createUser(diningUser);
 
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
-
-
 
 
     }
@@ -46,7 +43,6 @@ public class DiningUserController {
 
         DiningUser updateUser = diningUserService.updateUser(diningUser);
 
-        
 
         return new ResponseEntity<>(updateUser, HttpStatus.OK);
 
