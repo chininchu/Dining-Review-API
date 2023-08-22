@@ -12,18 +12,14 @@ import java.util.List;
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
 
-    boolean existsByNameAndZipCode(String name, String zipCode);
+    @Query("SELECT r FROM Restaurant r JOIN r.diningReviews dr WHERE r.zipCode = :zipCode AND dr.peanutScore IS NOT NULL GROUP BY r.id ORDER BY r.overallScore DESC")
+    List<Restaurant> findRestaurantsByZipCodeWithPeanutScores(@Param("zipCode") String zipCode);
 
-    @Query("SELECT r FROM Restaurant r " +
-            "JOIN r.diningReviews dr " +
-            "WHERE r.zipCode = :zipCode " +
-            "AND (CASE WHEN :allergy = 'peanut' THEN dr.peanutScore IS NOT NULL " +
-            "WHEN :allergy = 'egg' THEN dr.eggScore IS NOT NULL " +
-            "WHEN :allergy = 'dairy' THEN dr.dairyScore IS NOT NULL " +
-            "ELSE FALSE END) " +
-            "GROUP BY r.id " +
-            "ORDER BY r.overallScore DESC")
-    List<Restaurant> findRestaurantsByZipCodeWithAllergyScores(@Param("zipCode") String zipCode, @Param("allergy") String allergy);
+    @Query("SELECT r FROM Restaurant r JOIN r.diningReviews dr WHERE r.zipCode = :zipCode AND dr.eggScore IS NOT NULL GROUP BY r.id ORDER BY r.overallScore DESC")
+    List<Restaurant> findRestaurantsByZipCodeWithEggScores(@Param("zipCode") String zipCode);
+
+    @Query("SELECT r FROM Restaurant r JOIN r.diningReviews dr WHERE r.zipCode = :zipCode AND dr.dairyScore IS NOT NULL GROUP BY r.id ORDER BY r.overallScore DESC")
+    List<Restaurant> findRestaurantsByZipCodeWithDairyScores(@Param("zipCode") String zipCode);
 
 
 }
