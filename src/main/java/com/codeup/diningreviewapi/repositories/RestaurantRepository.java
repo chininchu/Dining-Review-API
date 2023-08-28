@@ -11,6 +11,8 @@ import java.util.List;
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
+    boolean existsByNameAndZipCode(String name, String zipCode);
+
 
     @Query("SELECT r FROM Restaurant r JOIN r.diningReviews dr WHERE r.zipCode = :zipCode AND dr.peanutScore IS NOT NULL GROUP BY r.id ORDER BY r.overallScore DESC")
     List<Restaurant> findRestaurantsByZipCodeWithPeanutScores(@Param("zipCode") String zipCode);
